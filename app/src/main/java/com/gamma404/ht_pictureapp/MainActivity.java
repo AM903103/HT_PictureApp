@@ -3,6 +3,7 @@ package com.gamma404.ht_pictureapp;
 import android.Manifest;
 import android.app.LoaderManager;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -14,12 +15,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleCursorAdapter;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int REQUEST_READ_STORAGE = 3;
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 R.layout.thumb_item, null, from, to, 0);
         gridView.setAdapter(adapter);
         getLoaderManager().initLoader(3, null, this);
+        gridView.setOnItemClickListener(this);
     }
 
     @Override
@@ -81,5 +85,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra("POSITION", position);
+        startActivity(intent);
     }
 }
