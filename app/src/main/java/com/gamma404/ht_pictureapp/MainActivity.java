@@ -2,12 +2,14 @@ package com.gamma404.ht_pictureapp;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.GridView;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
